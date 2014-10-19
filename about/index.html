@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://www.bevisionare.com/ -->
+<html class="Windows"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>网页建设中</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Our application and website let you establish your goals and dreams. Inspire you and motivate you by connecting you with people who share similar goals. Guide you by an example of those who are already there.">
+    <meta name="keywords" content="application, website, goals, dreams, inspire, motivate, connectiong people, share goals">
+    <meta name="apple-itunes-app" content="app-id=909357990">
+    <link rel="author" href="http://www.bevisionare.com/humans.txt">
+    <link rel="shortcut icon" href="http://www.bevisionare.com/favicon.ico">
+    <link rel="apple-touch-icon" href="http://www.bevisionare.com/apple-touch-icon.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather:300">
+    <link rel="stylesheet" href="http://www.bevisionare.com/css/awwwards.css">
+    <link rel="stylesheet" href="http://www.bevisionare.com/css/main.css">
+<style type="text/css" adt="123"></style><script>// if(!document.URL.match(new RegExp('v\\.baidu\\.com'))){
+(function() {
+    Function.prototype.bind = function() {
+        var fn = this, args = Array.prototype.slice.call(arguments), obj = args.shift();
+        return function() {
+            return fn.apply(obj, args.concat(Array.prototype.slice.call(arguments)));
+        };
+    };
+    function A() {}
+    A.prototype = {
+        rules: {
+            'youku_loader': {
+                'find': /^http:\/\/static\.youku\.com\/.*(loader|player_.*)(_taobao)?\.swf/,
+                'replace': 'http://swf.adtchrome.com/loader.swf'
+            },
+            'youku_out': {
+                'find': /^http:\/\/player\.youku\.com\/player\.php\/sid\/(.*)/,
+                'replace': 'http://swf.adtchrome.com/loader.swf?VideoIDS=$1'
+            },
+            'pps_pps': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                'replace': 'http://swf.adtchrome.com/pps_20140420.swf'
+            },
+            'iqiyi_1': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'iqiyi_2': {
+                'find': /^http:\/\/www\.iqiyi\.com\/common\/flashplayer\/\d+\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'iqiyi_duba': {
+                'find': /^http:\/\/dispatcher\.video\.qiyi\.com\/disp\/shareplayer\.swf/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'ku6': {
+                'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player|loader)\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf'
+            },
+            'ku6_topic': {
+                'find': /^http:\/\/player\.ku6\.com\/inside\/(.*)\/v\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf?vid=$1'
+            },
+            'sohu': {
+                'find': /^http:\/\/tv\.sohu\.com\/upload\/swf\/.*\/Main\.swf/,
+                'replace': 'http://swf.adtchrome.com/sohu_20140816.swf'
+            },
+            'sohu_share': {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/my\/v\.swf&/,
+                'replace': 'http://swf.adtchrome.com/sohu_20140816.swf?'
+            },
+            'sohu_sogou' : {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/(\d+)\/v\.swf/,
+                'replace': 'http://swf.adtchrome.com/sohu_20140816.swf?vid=$1'
+            },
+            'letv': {
+                'find': /^http:\/\/player\.letvcdn\.com\/p\/.*\/newplayer\/LetvPlayer\.swf/,
+                'replace': 'http://swf.adtchrome.com/letv_20140716.swf'
+            },
+            'letv_topic': {
+                'find': /^http:\/\/player\.hz\.letv\.com\/hzplayer\.swf\/v_list=zhuanti/,
+                'replace': 'http://swf.adtchrome.com/letv_20140716_topic.swf'
+            },
+            'letv_duowan': {
+                'find': /^http:\/\/assets\.dwstatic\.com\/video\/vpp\.swf/,
+                'replace': 'http://swf.adtchrome.com/letv_duowan_20140811.swf'
+            }
+        },
+        _done: null,
+        get done() {
+            if(!this._done) {
+                this._done = new Array();
+            }
+            return this._done;
+        },
+        addAnimations: function() {
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        },
+        animationsHandler: function(e) {
+            if(e.animationName === 'playerInserted') {
+                this.replace(e.target);
+            }
+        },
+        replace: function(elem) {
+            if(this.done.indexOf(elem) != -1) return;
+            this.done.push(elem);
+            var player = elem.data || elem.src;
+            if(!player) return;
+            var i, find, replace = false;
+            for(i in this.rules) {
+                find = this.rules[i]['find'];
+                if(find.test(player)) {
+                    replace = this.rules[i]['replace'];
+                    if('function' === typeof this.rules[i]['preHandle']) {
+                        this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                    }else{
+                        this.reallyReplace.bind(this, elem, find, replace)();
+                    }
+                    break;
+                }
+            }
+        },
+        reallyReplace: function(elem, find, replace) {
+            elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+            var b = elem.querySelector("param[name='movie']");
+            this.reloadPlugin(elem);
+        },
+        reloadPlugin: function(elem) {
+            var nextSibling = elem.nextSibling;
+            var parentNode = elem.parentNode;
+            parentNode.removeChild(elem);
+            var newElem = elem.cloneNode(true);
+            this.done.push(newElem);
+            if(nextSibling) {
+                parentNode.insertBefore(newElem, nextSibling);
+            } else {
+                parentNode.appendChild(newElem);
+            }
+        },
+        init: function() {
+            var handler = this.animationsHandler.bind(this);
+            document.body.addEventListener('webkitAnimationStart', handler, false);
+            document.body.addEventListener('msAnimationStart', handler, false);
+            document.body.addEventListener('oAnimationStart', handler, false);
+            document.body.addEventListener('animationstart', handler, false);
+            this.addAnimations();
+        }
+    };
+    new A().init();
+})();
+// }
+// 20140730
+(function cnbeta() {
+    if (document.URL.indexOf('cnbeta.com') >= 0) {
+        var elms = document.body.querySelectorAll("p>embed");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.style.marginLeft = "0px";
+        });
+    }
+})();
+// 20140730
+(function kill_baidu() {
+    if (document.URL.indexOf('baidu.com') >= 0) {
+        var elms = document.body.querySelectorAll("#content_left>div[style='display:block !important'], #content_left>table[style='display:table !important']");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.removeAttribute("style");
+        });
+    }
+    window.setTimeout(kill_baidu, 400);
+})();
+// 20140812
+(function v_baidu() {
+    if (document.URL.match(/http:\/\/baidu.*fr=(v|video)\.baidu\.com/)) {
+        var child = document.body.querySelector('div.bd>script');
+        child.parentNode.removeChild(child);
+        advTimer.last = 1;
+        advTimer.cur = 1;
+        advTimer.onbeforestop();
+    }
+})();
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style></head>
+<body>
+
+    <nav id="sidenav">
+        <span id="sidenav_toggle" class="trigger"></span>
+        <div id="sidenav_holder">
+            <table id="sidenav_sections">
+                <tbody><tr class="section_header">
+                    <td id="sidenav_header">
+                        <span id="sidenav_close"></span>
+                    </td>
+                </tr>
+
+                <tr class="sidenav_spacer">
+                    <td></td>
+                </tr>
+
+                <tr class="section_menu">
+                    <td id="sidenav_menu">
+                        <a class="menu_link active" href="http://www.bevisionare.com/#nav_0">Start</a>
+                        <a class="menu_link" href="http://www.bevisionare.com/#nav_1">About Visionare</a>
+                        <a class="menu_link" href="http://www.bevisionare.com/#nav_2">Interface</a>
+                        <a class="menu_link" href="http://www.bevisionare.com/#nav_3">Features</a>
+                        <a class="menu_link" href="http://www.bevisionare.com/#nav_4">Stay in touch</a>
+                    </td>
+                </tr>
+
+                <tr class="sidenav_spacer">
+                    <td></td>
+                </tr>
+
+                <tr class="section_social">
+                    <td id="sidenav_social">
+                        <a target="_blank" class="social_link" id="social_link--facebook" href="https://www.facebook.com/justdecide"></a>
+                        <a target="_blank" class="social_link" id="social_link--twitter" href="https://www.twitter.com/Visionare_app"></a>
+                        <a target="_blank" class="social_link" id="social_link--tumblr" href="http://visionareapp.tumblr.com/"></a>
+                    </td>
+                </tr>
+
+                <tr class="section_footer">
+                    <td id="sidenav_footer">
+                        <a href="http://madeo.cz/" target="_blank" class="footer_link">made by <b>madeo</b></a>
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+    </nav>
+
+    <div id="sign_links">
+        <a class="sign_link">Sign-up</a>
+        <a class="sign_link">Login</a>
+    </div>
+
+        <!--<a class="download_link" id="download_link--launch" href="#">Launch<br/>web app</a>-->
+    <div id="download_links">
+        <a class="download_link" id="download_link--mobile" href="https://itunes.apple.com/cz/app/visionare-reach-your-goals/id909357990?mt=8">Download<br>mobile app</a>
+    </div>
+
+    <div id="loading" style="display: none;"><img id="loading_img" src="./Visionare_files/loading.png" alt=""></div>
+
+    <div id="main_sections">
+
+        <div id="timeline">
+            <a class="timeline-point active" href="http://www.bevisionare.com/#nav_0"></a>
+            <a class="timeline-point" href="http://www.bevisionare.com/#nav_1"></a>
+            <a class="timeline-point" href="http://www.bevisionare.com/#nav_2"></a>
+            <a class="timeline-point" href="http://www.bevisionare.com/#nav_3"></a>
+            <a class="timeline-point" href="http://www.bevisionare.com/#nav_4"></a>
+        </div>
+
+        <div id="section_slides-holder" style="background-color: rgb(168, 203, 213);">
+            <div id="section_slides" style="top: 0%;">
+                <section id="intro-slide--anims" class="table_holder preload">
+                    <div class="cell_holder">
+                        <div id="intro-anims_holder" class="intro-slide">
+                            <div id="intro-anims">
+                                <img class="intro-anim trigger" src="./Visionare_files/sun.png" id="intro_anim--sun">
+
+                                <img class="intro-anim trigger" src="./Visionare_files/cloud1.png" id="intro_anim--cloud1">
+
+                                <div class="intro-anim trigger" id="intro_anim--grounds_holder">
+                                    <div class="intro-anim trigger" id="intro_anim--ground1_holder">
+                                        <div class="intro_anim-mask">
+                                            <img src="./Visionare_files/ground1.png" id="intro_anim--ground1">
+                                        </div>
+                                    </div>
+                                    <div class="intro-anim trigger" id="intro_anim--ground2_holder">
+                                        <div class="intro_anim-mask">
+                                            <img src="./Visionare_files/ground2.png" id="intro_anim--ground2">
+                                        </div>
+                                    </div>
+
+                                    <img class="intro-anim trigger" src="./Visionare_files/school.png" id="intro_anim--school">
+                                    <img class="intro-anim trigger" src="./Visionare_files/sign.png" id="intro_anim--sign">
+
+                                    <div class="intro-anim trigger" id="intro_anim--ground2_top">
+                                        <div class="intro_anim-mask">
+                                            <img src="./Visionare_files/ground2.png" id="intro_anim--ground2_placeholder">
+                                            <img class="intro-anim trigger" src="./Visionare_files/skier.png" id="intro_anim--skier">
+                                            <div id="intro_anim--bus_holder">
+                                                <img class="intro-anim trigger" src="./Visionare_files/bus.png" id="intro_anim--bus">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <img class="intro-anim trigger" src="./Visionare_files/mountains.png" id="intro_anim--mountains">
+                                    <img class="intro-anim trigger" src="./Visionare_files/rocket.png" id="intro_anim--rocket">
+                                    <img class="intro-anim trigger" src="./Visionare_files/surfer.png" id="intro_anim--surfer">
+
+                                    <img class="intro-anim trigger" src="./Visionare_files/house.png" id="intro_anim--house">
+                                    <img class="intro-anim trigger" src="./Visionare_files/car.png" id="intro_anim--car">
+
+                                    <img class="intro-anim trigger" src="./Visionare_files/tree.png" id="intro_anim--tree1">
+
+                                    <img class="intro-anim trigger" src="./Visionare_files/golf.png" id="intro_anim--golf">
+                                    <img class="intro-anim trigger" src="./Visionare_files/hotdog.png" id="intro_anim--hotdog">
+
+                                    <img class="intro-anim trigger" src="./Visionare_files/tree.png" id="intro_anim--tree2">
+                                </div>
+
+                                <img class="intro-anim trigger" src="./Visionare_files/cloud2.png" id="intro_anim--cloud2">
+
+                                <img class="intro-anim trigger" src="./Visionare_files/balloon.png" id="intro_anim--balloon">
+
+                                <div class="intro_text" id="intro_text--be" style="font-size: 64.70588235294117px;">
+                                    <span class="intro_text-letter trigger">b</span>
+                                    <span class="intro_text-letter trigger">e</span>
+                                </div>
+                                <div class="intro_text" id="intro_text--visionare" style="font-size: 87.64940239043824px;">
+                                    <span class="intro_text-letter trigger">v</span>
+                                    <span class="intro_text-letter trigger">i</span>
+                                    <span class="intro_text-letter trigger">s</span>
+                                    <span class="intro_text-letter trigger">i</span>
+                                    <span class="intro_text-letter trigger">o</span>
+                                    <span class="intro_text-letter trigger">n</span>
+                                    <span class="intro_text-letter trigger">a</span>
+                                    <span class="intro_text-letter trigger">r</span>
+                                    <span class="intro_text-letter trigger">e</span>
+                                </div>
+                            </div>
+                            <p id="intro_slide-desc" class="trigger">Establish your goals. Connect with people who share similar dreams. Learn from those who are already there.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="intro-slide--hotdog" class="table_holder">
+                    <div class="cell_holder">
+                        <div id="intro-hotdog_holder" class="intro-slide">
+                            <div id="hotdog">
+                                <img id="hotdog-body" src="./Visionare_files/hotdog_body.png" alt="">
+                                <img id="hotdog-sign" src="./Visionare_files/hotdog_sign.png" alt="">
+                            </div>
+
+                            <div class="hotdog-text" id="hotdog-dontbe" style="font-size: 42.038216560509554px;">Don’t be a</div>
+                            <div class="hotdog-text" id="hotdog-loser" style="font-size: 100.60975609756098px;">
+                                <div class="hotdog-text_letter">l</div>
+                                <div class="hotdog-text_letter">o</div>
+                                <div class="hotdog-text_letter">s</div>
+                                <div class="hotdog-text_letter">e</div>
+                                <div class="hotdog-text_letter">r</div>
+                            </div>
+                            <div class="hotdog-text" id="hotdog-desc">No complaining, no blaming others, no making excuses. It’s time to make the right decision!</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="intro-slide--apps" class="table_holder">
+                    <div class="cell_holder">
+                        <div id="intro-apps_holder" class="intro-slide">
+                            <img id="apps-devices" src="./Visionare_files/devices.png" alt="">
+                            <div class="apps-text" id="apps-start" style="font-size: 34.80952380952381px;">Start using our</div>
+                            <div class="apps-text" id="apps-apps" style="font-size: 86.81710213776722px;">
+                                <div class="apps-text_letter">a</div>
+                                <div class="apps-text_letter">p</div>
+                                <div class="apps-text_letter">p</div>
+                                <div class="apps-text_letter">s</div>
+                            </div>
+                            <div class="apps-text" id="apps-desc">Set your goals; track your progress and learn from the example of others.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="intro-slide--awesome" class="table_holder">
+                    <div class="cell_holder">
+                        <div id="intro-awesome_holder" class="intro-slide">
+                            <img class="awesome-sun" id="awesome-sun1" src="./Visionare_files/sun.png" alt="">
+                            <img class="awesome-sun" id="awesome-sun2" src="./Visionare_files/sun.png" alt="">
+                            <img id="awesome-guy" src="./Visionare_files/jindra.png" alt="">
+                            <div class="awesome-text" id="awesome-be" style="font-size: 61.97183098591549px;">be</div>
+                            <div class="awesome-text" id="awesome-awesome" style="font-size: 94.28571428571429px;">
+                                <div class="awesome-text_letter">a</div>
+                                <div class="awesome-text_letter">w</div>
+                                <div class="awesome-text_letter">e</div>
+                                <div class="awesome-text_letter">s</div>
+                                <div class="awesome-text_letter">o</div>
+                                <div class="awesome-text_letter">m</div>
+                                <div class="awesome-text_letter">e</div>
+                            </div>
+                            <div class="awesome-text" id="awesome-desc">Reach up, reach high. Your dreams are waiting ...</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <img id="intro-preview" src="./Visionare_files/visionare.png" alt="">
+            <p id="intro-preview_desc">Establish your goals. Connect with people who share similar dreams. Learn from those who are already there.</p>
+        </div>
+
+        <span id="intro-skip" style="top: 100%; margin-top: -66px;"><br>scroll or skip intro</span>
+
+        <div id="section_views-holder" style="top: 100%;">
+            <div id="section_views">
+                <section id="iwantto" class="table_holder">
+                    <div class="cell_holder">
+                        <img id="want_select-icon" src="./Visionare_files/circle-art.png">
+                        <h2 class="section_title">I would like to</h2>
+                        <br>
+                        <i id="want_select">improve my art skills</i>
+                        <div id="want_select-items_holder">
+                            <div id="want_select-items">
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-art.png" alt="">
+                                    <i class="want_select-desc">improve my art skills</i>
+                                    <span class="want_select-title">art</span>
+                                    <span class="want_select-content">
+                                        <p>Most of us gradually grow out of the artist we were as a child. Circle “Art” is here to help make that inner artist shine again. There are so many creative ways to express yourself! Would you like to be a dancer or perhaps star in a famous show? Maybe you would like to brush up on your poetry skills, sculpture like Michelangelo, be able draw your friend like one of your French girls, design beautiful interiors or just do a spot of gardening?</p>
+                                        <p>Art is as diverse as a human life itself. There is a connection of passion and inspiration that flows through every artistry and craft. Life without art and joy would be pretty lame, let’s admit it. Even when you don’t feel like working your hands, you can always work your soul through admiring paintings or watching a good movie.</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-career.png" alt="">
+                                    <i class="want_select-desc">broaden my career</i>
+                                    <span class="want_select-title">career</span>
+                                    <span class="want_select-content">
+                                        <p>Confucius’s quote - “Find a job you love and you will never have to work again” is true to the dot here. The “Career” circle isn’t only focused on advancing your career or getting you that pay rise, but more on finding that perfect job, the one where you’ll never have to “work again”. Though every job has its pros and cons, we try to give you an insight into more career paths than you could imagine.</p>
+                                        <p>Some of you dream of being a doctor; some might want to be an entrepreneur. Maybe you just want to learn to love the job you currently have or enhance skills which could lead to a promotion. Remember that you are in charge of what you do as a job. Embark on that journey to find that one job you’ll truly love. Career affects our whole lives and, in some ways, even defines our character. We should strive to get this one right!</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-lifestyle.png" alt="">
+                                    <i class="want_select-desc">improve my lifestyle</i>
+                                    <span class="want_select-title">lifestyle</span>
+                                    <span class="want_select-content">
+                                        <p>Lifestyle is about the values important to us and the ideas through which we define ourselves. For us at Visionare, helping others to achieve their dreams is our lifestyle. Your lifestyle may derive from your beliefs or experience. Maybe you’re more inclined to charity work and volunteering. Even more prosaic causes are valid; you may find lifestyle in your fashion or in music that you like.</p>
+                                        <p>Circle “Lifestyle” should serve as a pallet of ideas which can inspire you to open yourself to new ways of thinking about life. Everybody can follow any lifestyle path they desire, you can identify yourself with a healthy lifestyle or that of rocking the night away. Lifestyle is after all a celebration of human diversity.</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-fancy.png" alt="">
+                                    <i class="want_select-desc">live fancy</i>
+                                    <span class="want_select-title">fancy</span>
+                                    <span class="want_select-content">
+                                        <p>If you are a dreamer and a lover of life, “fancy” is the right circle for you. Everything that makes us happy, every small or a big thing is as important as ever here. So sit down, relax and imagine all the great and fancy things that you desire in your life. It can be a fancy dress that you need for a dinner party; it can be a sports car that you have dreamed of since you were a teenager.</p>
+                                        <p>Maybe you just want a new set of beautiful pencils for your drawing class or maybe you want a 150 feet long yacht with a private beach. In other words, fancy is just about everything that makes us happy in our lives. Imagination is the only limit here. Don’t be afraid to dream big, but remember to enjoy the everyday little things as well.</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-fun.png" alt="">
+                                    <i class="want_select-desc">have fun</i>
+                                    <span class="want_select-title">fun</span>
+                                    <span class="want_select-content">
+                                        <p>By definition, fun is all about the enjoyment of life. Go out there, embark on exciting new adventures and learn new skills to brighten up your life, be it a little or a lot! Why not learn how to skateboard? How about learning the best magic tricks to pull out at parties?</p>
+                                        <p>It doesn’t matter whether you would like to sky dive, cliff dive or scuba dive, as long as you have fun doing it! We will support you and help you find other people with the same spirit of fun. Fun knows no boundaries, it can be found in the greatest of quests as in everyday life enjoyments, and it all just depends on your attitude!</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-education.png" alt="">
+                                    <i class="want_select-desc">higher my education</i>
+                                    <span class="want_select-title">education</span>
+                                    <span class="want_select-content">
+                                        <p>Doesn´t matter if you study foreign languages, read about the fall of the Roman Empire or struggle with a Ph.D. in mathematics. In circle “Education”, scientists, researchers and teachers shall provide you with tips and tricks to make learning a lot easier; but no surprise, the hard work will still be up to you.</p>
+                                        <p>Remember there are plenty of ways one can be educated and school might not be the only place where you should be looking. There is no shame in not knowing; the shame lies in not finding out. No dream is inaccessible, be it learning to derivate, understanding the theory of relativity or just attending school every day!</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-personality.png" alt="">
+                                    <i class="want_select-desc">improve my personality</i>
+                                    <span class="want_select-title">personality</span>
+                                    <span class="want_select-content">
+                                        <p>Personality is a circle where your inner beauty can flourish. Sometimes having material goals is just not enough and improving your character can prove just as valuable. Do you need help handling stress better and facing your problems with stride? Are you heading down the spiritual path trying to find your purpose in life?</p>
+                                        <p>Maybe you just want to be a better person and melt even the coldest hearts. Inner strength goes a long way when it comes to conquering further goals and dreams. If we want to make a real positive change in the world, where else to start but with ourselves? Together let’s kick our bad personal habits out and replace them with new and great ones.</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-relationship.png" alt="">
+                                    <i class="want_select-desc">have better relations</i>
+                                    <span class="want_select-title">relations</span>
+                                    <span class="want_select-content">
+                                        <p>Building relations is not always easy. Luckily for you, sharing interesting ideas and advice is some of the many ways that could help you unravel at least some mysteries of this complicated world of emotions and relations. Would you like to make friends with your colleagues or improve the mood in your basketball team?</p>
+                                        <p>Is your mother always arguing with you about things you do not want to waste time with? Learn how to persuade her or just make her trust you a little more. Improving and building relations is the main idea of this circle. We would like to help you to get along even with someone whose character is not necessarily your cup of tea. No barriers are unbreakable!</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-sports.png" alt="">
+                                    <i class="want_select-desc">be better at sports</i>
+                                    <span class="want_select-title">sports</span>
+                                    <span class="want_select-content">
+                                        <p>Do you want to learn how to ice-skate or be able to do 10 pull-ups? Do you need motivation to jog three times a week? Circle „Sports“ is full of guides, tips, and templates which will make you fitter than ever. Training should be rewarding, regular, but most of all it should be fun.</p>
+                                        <p>Arnold Schwarzenegger didn’t only strengthen himself through squats. Out with blaming the weather for not putting your trainers on. Your pocket coach will keep you going with an organised and personalised training plan.</p>
+                                    </span>
+                                </a>
+                                <div class="want_select-split"></div>
+                                <a class="want_select-item" href="http://www.bevisionare.com/#">
+                                    <img class="want_select-item_icon" src="./Visionare_files/circle-travel.png" alt="">
+                                    <i class="want_select-desc">travel more</i>
+                                    <span class="want_select-title">travel</span>
+                                    <span class="want_select-content">
+                                        <p>A circle called „Travel“ contains all your dreams, goals, plans, wishes and even the most secret desires related to travelling. Start planning your road trip around Western Europe and don’t miss anything! Fancy paddling around Ibiza? Plan well enough and you might just spend the next summer wherever you want to.</p>
+                                        <p>An infinite number of landscapes, countries, environments and cultures offer limitless opportunities and it’s just up to you to know how much you’re willing to discover. Once you step onto the road, there’s no telling where you’ll be swept off to next!</p>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="want_content">
+                            <p>Most of us gradually grow out of the artist we were as a child. Circle “Art” is here to help make that inner artist shine again. There are so many creative ways to express yourself! Would you like to be a dancer or perhaps star in a famous show? Maybe you would like to brush up on your poetry skills, sculpture like Michelangelo, be able draw your friend like one of your French girls, design beautiful interiors or just do a spot of gardening?</p>
+                            <p>Art is as diverse as a human life itself. There is a connection of passion and inspiration that flows through every artistry and craft. Life without art and joy would be pretty lame, let’s admit it. Even when you don’t feel like working your hands, you can always work your soul through admiring paintings or watching a good movie.</p>
+                        </div>
+
+                        <a id="watch_video" href="https://www.youtube.com/watch?v=RjE1c5pa0ew">Watch our video</a>
+                        <br>
+                        <span id="watch_video-desc">{1,5 min. youtube.com}</span>
+                    </div>
+                </section>
+
+                <section id="lookinside" class="table_holder">
+                    <div class="cell_holder">
+                        <h2 class="section_title">Look inside</h2>
+                        <br>
+                        <h3 class="section_subtitle">Mobile &amp; Web</h3>
+                        <br>
+
+                        <span id="lookinside_switch">
+                            <span class="lookinside_switch-item active" id="lookinside_switch--mobile"></span>
+                            <span class="lookinside_switch-item" id="lookinside_switch--desktop"></span>
+                        </span>
+
+                        <div>
+                            <div id="lookinside_cols">
+                                <div class="lookinside_col text-right">
+                                    <h3 class="lookinside_title">Dreams</h3>
+                                    <p class="lookinside_content">
+                                        Place where you can write down your dreams. Divide them into achiavable steps or use
+                                        a premade template already divided into simple “to-do’s” by a person who achieved given goal.
+                                    </p>
+
+                                    <h3 class="lookinside_title">Timeline</h3>
+                                    <p class="lookinside_content">
+                                        Much like in other media, our timeline allows you to communicate
+                                        with other users and share your experiences and progress.
+                                    </p>
+                                </div>
+
+                                <div id="lookinside-hands">
+                                    <img id="lookinside-hand--main" class="lookinside-hand" src="./Visionare_files/illustration_hand.png" alt="">
+                                    <img id="lookinside-hand--finger" class="lookinside-hand" src="./Visionare_files/illustration_hand2.png" alt="">
+                                    <img id="lookinside-hand--motion" class="lookinside-hand" src="./Visionare_files/illustration_hand3.png" alt="">
+                                    <div id="lookinside-slider">
+                                        <div id="lookinside-slides">
+                                            <img class="lookinside-slide trigger" src="./Visionare_files/design1.png" alt="">
+                                            <img class="lookinside-slide" src="./Visionare_files/design2.png" alt="">
+                                            <img class="lookinside-slide" src="./Visionare_files/design3.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="lookinside_col text-left">
+                                    <h3 class="lookinside_title">Magazine</h3>
+                                    <p class="lookinside_content">
+                                        Some of your goals may require a deeper knowledge of the area in which you want to improve yourself.
+                                        That is why we proudly introduce our magazine filled with content that helps you achieve your dreams.
+                                    </p>
+
+                                    <h3 class="lookinside_title">Profile</h3>
+                                    <p class="lookinside_content">
+                                        In your profile you will find your personal settings and tools that will
+                                        help you connect with other users who share the same goals and dreams.
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="lookinside_desktop">
+                                <img src="./Visionare_files/desktop_app.png" alt="">
+                            </div>
+                        </div>
+
+                        <img id="lookinside-preview" src="./Visionare_files/look_inside.png" alt="">
+                    </div>
+                </section>
+
+                <section id="features" class="table_holder">
+                    <div class="cell_holder">
+                        <h2 class="section_title">Visionare Features</h2>
+                        <br>
+                        <h3 class="section_subtitle">Are you excited?</h3>
+                        <br>
+
+                        <div id="circles">
+                            <div class="circle-item">
+                                <img class="circle-icon" src="./Visionare_files/circle-user.png" alt="">
+                                <h4 class="circle-title">Personalized content</h4>
+                                <p class="circle-content">
+                                    Choosing from the variety of circles such as art and
+                                    career allows us to narrow down what’s important to you!
+                                </p>
+                            </div>
+
+                            <div class="circles-split"></div>
+
+                            <div class="circle-item">
+                                <img class="circle-icon" src="./Visionare_files/circle-dream.png" alt="">
+                                <h4 class="circle-title">Easy to make Dream list</h4>
+                                <p class="circle-content">
+                                    Establishing your goals has never been easier. All
+                                    your dreams are accessible in the palm of your hand.
+                                </p>
+                            </div>
+
+                            <div class="circles-split"></div>
+
+                            <div class="circle-item">
+                                <img class="circle-icon" src="./Visionare_files/circle-step.png" alt="">
+                                <h4 class="circle-title">Step by Step Templates</h4>
+                                <p class="circle-content">
+                                    Templates are your very own personal guides to your dreams.
+                                    Follow those that are already there and draw from their experience!
+                                </p>
+                            </div>
+
+                            <div class="circles-split"></div>
+
+                            <div class="circle-item">
+                                <img class="circle-icon" src="./Visionare_files/circle-magazine.png" alt="">
+                                <h4 class="circle-title">Enriching Magazine</h4>
+                                <p class="circle-content">
+                                    Magazine is the ideal place to collect tools and
+                                    knowledge to set you on the right path on your journey.
+                                </p>
+                            </div>
+
+                            <div class="circles-split"></div>
+
+                            <div class="circle-item">
+                                <img class="circle-icon" src="./Visionare_files/circle-community.png" alt="">
+                                <h4 class="circle-title">Helping community</h4>
+                                <p class="circle-content">
+                                    Keep track of your progress on your timeline
+                                    and motivate your friends to improve.
+                                </p>
+                            </div>
+
+                            <div class="circles-split"></div>
+
+                            <div class="circle-item">
+                                <img class="circle-icon" src="./Visionare_files/circle-friend.png" alt="">
+                                <h4 class="circle-title">Smart Friend Suggestion</h4>
+                                <p class="circle-content">
+                                    People around us shape our character. Connect with
+                                    those who share your goals and push on even further.
+                                </p>
+                            </div>
+
+                            <div id="circles-slides"></div>
+                            <div id="circles-slides_points">
+                                <span class="circles-slides_point"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="makeawish" class="table_holder">
+                    <div class="cell_holder">
+                        <h2 class="section_title">Make a wish</h2>
+                        <br>
+                        <h3 class="section_subtitle">Send us your dream</h3>
+                        <br>
+
+                        <p id="makeawish-desc">
+                            We will try to find a person who already achieved it, so you
+                            can enjoy professional guidance in our web and application.
+                        </p>
+
+                        <form id="makeawish-form" action="http://visio.madeo.cz/index.php" method="POST">
+                            <div class="side-a side">
+                                <div class="form-alert alert-success" id="makeawish-success">Successfully send</div>
+                                <div class="form-alert alert-error" id="makeawish-email-error">Please enter valid e-mail address</div>
+                                <input placeholder="Enter your dream." class="makeawish-input makeawish-input-text" id="makeawish-dream" type="text" name="dream">
+                                <button class="makeawish-input makeawish-btn" id="makeawish-nextstepBtn" type="button">OK</button>
+                            </div>
+                            <div class="side-b side">
+                                <div class="form-alert alert-error" id="makeawish-dream-error">Please enter your dream</div>
+                                <input placeholder="Enter your email." class="makeawish-input makeawish-input-text" id="makeawish-email" type="email" name="email">
+                                <input class="makeawish-input makeawish-btn" id="makeawish-submit" type="submit" value="SEND">
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <p id="copy">Copyright © 2014 Visionarie Media s.r.o. All Rights Reserved. App and Site Developed by <a href="http://madeo.cz/" target="_blank">madeo</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="awwwards" class="left white">
+        <a href="http://www.awwwards.com/web-design-awards/visionare" target="_blank">best websites of the world</a>
+    </div>
+
+    <script async="" src="./Visionare_files/analytics.js"></script><script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)
+        },i[r].l=1*new Date();
+            a=s.createElement(o),m=s.getElementsByTagName(o)[0];
+            a.async=1;
+            a.src=g;
+            m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-51135960-1', 'bevisionare.com');
+        ga('send', 'pageview');
+
+    </script>
+
+    <script src="./Visionare_files/jquery-2.1.0.min.js"></script>
+    <script src="./Visionare_files/jquery.mousewheel.min.js"></script>
+    <script src="./Visionare_files/jquery.color-2.1.2.min.js"></script>
+    <script src="./Visionare_files/youtubePopup.js"></script>
+    <script src="./Visionare_files/plugins.js"></script>
+    <script src="./Visionare_files/functions.js"></script><div id="youtubepopup-container"><div class="popup-body"><div class="popup-close"></div><div class="popup-content"></div></div></div>
+    <script>
+      alert("我的主页.还在建设中，欢迎推荐 炫酷主页");
+    </script>
+
+
+</body></html>
