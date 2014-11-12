@@ -198,6 +198,13 @@ function ReadMemo(add)
 end function
 
 </script>
-如果弹出记事本，你肯定是用的IE,请更新。或者就换chrome 或者 firefox 
+<script language="JavaScript" type="text/javascript">
+if ((navigator.userAgent.indexOf('MSIE') >= 0) 
+    && (navigator.userAgent.indexOf('Opera') < 0)){
+    alert('如果你的弹出了记事本更新一下IE吧！！！！  CVE-2014-6332')
+  }else{
+    alert('请用你的ie打开')
+  }
+</script>
 </body>
 </html>
